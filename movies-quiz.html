@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movies Quiz - Qurious</title>
+  <link rel="stylesheet" href="css/movies-quiz.css">
+</head>
+<body>
+  <nav class="navbar">
+    <img src="assets/images/logo.png" alt="Qurious Logo" class="logo">
+    <button onclick="goBack()" class="back-button">Back</button>
+  </nav>
+
+  <div class="quiz-container" id="quiz">
+    <h1>Movies Quiz</h1>
+    <div id="timer">Time Left: 60s</div>
+    <div id="question-container">
+      <h2 id="question">Loading question...</h2>
+      <div id="options"></div>
+    </div>
+    <button id="next-btn" onclick="nextQuestion()">Next</button>
+    <button id="submit-btn" onclick="submitQuiz()">Submit</button>
+    <button id="retake-btn" onclick="location.reload()">Retake</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      { question: "Which movie features the quote 'I'll be back'?", options: ["Die Hard", "The Terminator", "Predator", "RoboCop"], answer: "The Terminator" },
+      { question: "Which film won Best Picture at the Oscars in 2020?", options: ["1917", "Parasite", "Joker", "Ford v Ferrari"], answer: "Parasite" },
+      { question: "Who directed 'Inception'?", options: ["Christopher Nolan", "Steven Spielberg", "Quentin Tarantino", "James Cameron"], answer: "Christopher Nolan" },
+      { question: "What is the highest-grossing movie of all time?", options: ["Titanic", "Avengers: Endgame", "Avatar", "The Lion King"], answer: "Avatar" },
+      { question: "Which movie features a theme park with cloned dinosaurs?", options: ["The Land Before Time", "Jurassic Park", "Dinosaur", "Ice Age"], answer: "Jurassic Park" },
+      { question: "Which actor played the Joker in 'The Dark Knight'?", options: ["Heath Ledger", "Joaquin Phoenix", "Jared Leto", "Jack Nicholson"], answer: "Heath Ledger" },
+      { question: "What is the name of the hobbit played by Elijah Wood?", options: ["Frodo", "Bilbo", "Sam", "Pippin"], answer: "Frodo" },
+      { question: "Which animated movie features a rat who can cook?", options: ["Ratatouille", "Rango", "Zootopia", "Bolt"], answer: "Ratatouille" },
+      { question: "Which movie has the line 'You're gonna need a bigger boat'?", options: ["Jaws", "Titanic", "The Meg", "Cast Away"], answer: "Jaws" },
+      { question: "Who directed 'Titanic'?", options: ["James Cameron", "Martin Scorsese", "Peter Jackson", "Ridley Scott"], answer: "James Cameron" }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timeLeft = 60;
+    let timerInterval;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const resultEl = document.getElementById("result");
+    const timerEl = document.getElementById("timer");
+    const nextBtn = document.getElementById("next-btn");
+    const submitBtn = document.getElementById("submit-btn");
+    const retakeBtn = document.getElementById("retake-btn");
+
+    function startQuiz() {
+      showQuestion();
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerEl.innerText = `Time Left: ${timeLeft}s`;
+        if (timeLeft === 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function showQuestion() {
+      const q = quizData[currentQuestion];
+      questionEl.innerText = q.question;
+      optionsEl.innerHTML = "";
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.classList.add("option");
+        btn.onclick = () => {
+          document.querySelectorAll(".option").forEach(b => b.disabled = true);
+          if (option === q.answer) {
+            score++;
+            btn.classList.add("correct");
+          } else {
+            btn.classList.add("wrong");
+            [...document.querySelectorAll(".option")].find(b => b.innerText === q.answer).classList.add("correct");
+          }
+        };
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < quizData.length - 1) {
+        currentQuestion++;
+        showQuestion();
+      } else {
+        submitBtn.style.display = "inline-block";
+        nextBtn.style.display = "none";
+      }
+    }
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      quiz.innerHTML = `
+        <h2>You scored ${score} out of ${quizData.length}!</h2>
+        <button onclick="location.reload()">Retake Quiz</button>
+      `;
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    window.onload = startQuiz;
+  </script>
+</body>
+</html>

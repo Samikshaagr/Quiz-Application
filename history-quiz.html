@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History Quiz</title>
+  <link rel="stylesheet" href="css/history-quiz.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="assets/images/logo.png" alt="Qurious Logo" class="logo" />
+    <button class="back-btn" onclick="goBack()">← Back</button>
+  </nav>
+
+  <!-- Quiz Container -->
+  <div class="quiz-container">
+    <h1>History Quiz</h1>
+    <div id="timer">Time left: 60s</div>
+    <div id="question-container">
+      <div id="question">Loading question...</div>
+      <div id="options"></div>
+    </div>
+    <button id="next-btn" onclick="nextQuestion()">Next</button>
+    <button id="submit-btn" onclick="submitQuiz()">Submit</button>
+    <button id="retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+    <div id="result-container" style="display: none;"></div>
+  </div>
+
+  <!-- Inline JavaScript -->
+  <script>
+    const questions = [
+      {
+        question: "Who was the first President of the United States?",
+        options: ["George Washington", "Abraham Lincoln", "John Adams", "Thomas Jefferson"],
+        answer: "George Washington"
+      },
+      {
+        question: "In which year did World War II end?",
+        options: ["1940", "1945", "1939", "1950"],
+        answer: "1945"
+      },
+      {
+        question: "The Great Wall of China was primarily built to defend against which group?",
+        options: ["Romans", "Mongols", "Vikings", "Persians"],
+        answer: "Mongols"
+      },
+      {
+        question: "Who discovered America in 1492?",
+        options: ["Vasco da Gama", "Christopher Columbus", "Ferdinand Magellan", "Leif Erikson"],
+        answer: "Christopher Columbus"
+      },
+      {
+        question: "The French Revolution began in which year?",
+        options: ["1789", "1804", "1776", "1812"],
+        answer: "1789"
+      },
+      {
+        question: "Who was the British Prime Minister during WWII?",
+        options: ["Winston Churchill", "Neville Chamberlain", "Margaret Thatcher", "Tony Blair"],
+        answer: "Winston Churchill"
+      },
+      {
+        question: "Which empire built Machu Picchu?",
+        options: ["Aztec", "Inca", "Maya", "Olmec"],
+        answer: "Inca"
+      },
+      {
+        question: "What document was signed in 1215 limiting the power of the English King?",
+        options: ["Bill of Rights", "Magna Carta", "Treaty of Versailles", "Constitution"],
+        answer: "Magna Carta"
+      },
+      {
+        question: "Who painted the ceiling of the Sistine Chapel?",
+        options: ["Da Vinci", "Michelangelo", "Raphael", "Donatello"],
+        answer: "Michelangelo"
+      },
+      {
+        question: "What was the name of the ship that brought the Pilgrims to America?",
+        options: ["Santa Maria", "Endeavour", "Mayflower", "Victoria"],
+        answer: "Mayflower"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timer = 60;
+    let interval;
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("question").textContent = q.question;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      q.options.forEach((opt) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.classList.add("option-btn");
+        btn.onclick = () => selectAnswer(btn, opt === q.answer);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(button, isCorrect) {
+      const allOptions = document.querySelectorAll(".option-btn");
+      allOptions.forEach(btn => btn.disabled = true);
+      button.classList.add(isCorrect ? "correct" : "wrong");
+      if (isCorrect) score++;
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+      }
+    }
+
+    function submitQuiz() {
+      clearInterval(interval);
+      document.getElementById("question-container").style.display = "none";
+      document.getElementById("next-btn").style.display = "none";
+      document.getElementById("submit-btn").style.display = "none";
+      const result = document.getElementById("result-container");
+      result.style.display = "block";
+      result.textContent = `You scored ${score} out of ${questions.length}`;
+      document.getElementById("retake-btn").style.display = "inline-block";
+    }
+
+    function retakeQuiz() {
+      location.reload();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    function startTimer() {
+      interval = setInterval(() => {
+        timer--;
+        document.getElementById("timer").textContent = `Time left: ${timer}s`;
+        if (timer === 0) submitQuiz();
+      }, 1000);
+    }
+
+    window.onload = () => {
+      showQuestion();
+      startTimer();
+    };
+  </script>
+</body>
+</html>

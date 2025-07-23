@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How to Play - Qurious</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="login.html">
+        <img src="assets/images/logo.png" alt="Qurious Logo" style="height: 80px; width: 180px;">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Instructions -->
+  <main>
+    <div class="instructions-box">
+      <h2>How to Play</h2>
+      <ul class="instructions-list">
+        <li>👉 Read each question carefully.</li>
+        <li>👉 Choose the correct answer from the given options.</li>
+        <li>👉 Click "Next" to move to the next question.</li>
+        <li>👉 Your score will be shown at the end.</li>
+        <li>👉 Try to get as many correct as possible!</li>
+      </ul>
+      <a id="startQuizBtn" class="start-btn" href="#">Start Quiz</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Qurious. All rights reserved.</p>
+  </footer>
+
+  <!-- Script to handle genre-based redirection -->
+  <script>
+    // Get genre from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const genre = urlParams.get('genre');
+  
+    // Redirect based on genre
+    document.getElementById('startQuizBtn').addEventListener('click', () => {
+      if (genre === 'science') {
+        window.location.href = 'science-quiz.html';
+      } else if (genre === 'history') {
+        window.location.href = 'history-quiz.html';
+      } else if (genre === 'sports') {
+        window.location.href = 'sports-quiz.html';
+      } else if (genre === 'movies') {
+        window.location.href = 'movies-quiz.html';
+      } else {
+        alert('Genre not recognized.');
+      }
+    });
+  </script>
+  
+</body>
+</html>

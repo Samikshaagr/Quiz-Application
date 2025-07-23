@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: url('../assets/images/history-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #3a2e1d;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(245, 222, 179, 0.85);
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .back-btn {
+    background-color: #8b5e3c;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .quiz-container {
+    max-width: 700px;
+    margin: 60px auto;
+    background-color: rgba(255, 248, 220, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #question {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .option-btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #8b5e3c;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .option-btn:hover {
+    background-color: #f3e6d0;
+  }
+  
+  .correct {
+    background-color: #c8e6c9 !important;
+    border-color: #2e7d32 !important;
+  }
+  
+  .wrong {
+    background-color: #ffcdd2 !important;
+    border-color: #c62828 !important;
+  }
+  
+  #next-btn,
+  #submit-btn,
+  #retake-btn {
+    margin-top: 15px;
+    padding: 10px 16px;
+    font-size: 16px;
+    background-color: #8b5e3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #submit-btn {
+    margin-left: 10px;
+  }
+  
+  #retake-btn {
+    display: none;
+    margin-top: 20px;
+  }
+  

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qurious - Home</title>
+
+  <!-- AOS Library CSS for Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Link to your external CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">   
+    <div class="logo">
+      <a href="index.html">
+        <img src="assets/images/logo.png" alt="Qurious Logo" style="height: 80px;",style="width: 180px">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#genres">Genres</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="auth-buttons">
+      <a href="login.html" class="btn">Login</a>
+      <a href="signup.html" class="btn btn-primary">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text" data-aos="fade-right">
+      <h1>Test Your Knowledge with Qurious!</h1>
+      <p>Choose your favorite quiz genre and challenge yourself today!</p>
+      <a href="#genres" class="btn btn-primary hero-btn">Start Playing</a>
+    </div>
+    <div class="hero-image" data-aos="fade-left">
+      <img src="assets/images/quiz-illustrations.jpg" alt="Quiz Illustration">
+    </div>
+  </section>
+
+  <!-- Genres Section -->
+  <section class="genres" id="genres">
+    <h2 data-aos="fade-up">Choose a Quiz Genre</h2>
+    <div class="genre-cards">
+
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <img src="assets/images/science.png" alt="Science">
+        <h3>Science</h3>
+        <p>Challenge your scientific knowledge!</p>
+        <a href="instruction.html?genre=science" class="btn btn-primary">Play</a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <img src="assets/images/history.png" alt="History">
+        <h3>History</h3>
+        <p>Dive into the past and test your memory!</p>
+        <a href="instruction.html?genre=history" class="btn btn-primary">Play</a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <img src="assets/images/sports.png" alt="Sports">
+        <h3>Sports</h3>
+        <p>Are you a true sports fanatic?</p>
+        <a href="instruction.html?genre=sports" class="btn btn-primary">Play</a>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="400">
+        <img src="assets/images/movies.png" alt="Movies">
+        <h3>Movies</h3>
+        <p>Test your movie knowledge!</p>
+        <a href="instruction.html?genre=movies" class="btn btn-primary">Play</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AOS Library JS for Animations -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Qurious. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>

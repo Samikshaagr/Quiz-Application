@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('../assets/images/sports-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+}
+
+.logo {
+    height: 40px;
+}
+
+.back-button {
+    padding: 8px 14px;
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quiz-container {
+    background-color: rgba(0, 0, 0, 0.75);
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#timer {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.option {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #00bfff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    width: 80%;
+}
+
+.option:hover, .option.selected {
+    background-color: #007acc;
+}
+
+#next-btn, #submit-btn, #retake-btn {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+}
+
+#retake-btn {
+    display: none;
+}

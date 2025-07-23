@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('../assets/images/movies-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  .back-button {
+    background-color: #ff5e57;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .quiz-container {
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 25px;
+    margin: 50px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #000;
+    text-align: center;
+  }
+  
+  #timer {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .option {
+    display: block;
+    background-color: #3498db;
+    border: none;
+    padding: 12px;
+    margin: 10px auto;
+    width: 80%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+  }
+  
+  .option:hover {
+    background-color: #2980b9;
+  }
+  
+  .correct {
+    background-color: #2ecc71 !important;
+  }
+  
+  .wrong {
+    background-color: #e74c3c !important;
+  }
+  
+  #next-btn, #submit-btn, #retake-btn {
+    padding: 10px 20px;
+    margin-top: 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #next-btn {
+    background-color: #f39c12;
+    color: white;
+  }
+  
+  #submit-btn {
+    background-color: #27ae60;
+    color: white;
+    display: none;
+  }
+  
+  #retake-btn {
+    background-color: #8e44ad;
+    color: white;
+    display: none;
+  }
+  
+  #result {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+  

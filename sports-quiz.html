@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sports Quiz</title>
+    <link rel="stylesheet" href="css/sports-quiz.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <img src="assets/images/logo.png" alt="Qurious Logo" class="logo" />
+        <button onclick="goBack()" class="back-button">← Back</button>
+    </nav>
+    <div class="quiz-container">
+        <h1>Sports Quiz</h1>
+        <div id="timer">Time Left: 60s</div>
+        <div id="quiz-box"></div>
+        <button id="next-btn" onclick="nextQuestion()">Next</button>
+        <button id="submit-btn" onclick="submitQuiz()">Submit</button>
+        <button id="retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        const quizData = [
+            {
+                question: "Which country hosted the 2016 Summer Olympics?",
+                options: ["Brazil", "China", "UK", "Russia"],
+                answer: "Brazil"
+            },
+            {
+                question: "In which sport would you perform a slam dunk?",
+                options: ["Volleyball", "Basketball", "Tennis", "Baseball"],
+                answer: "Basketball"
+            },
+            {
+                question: "Which athlete is known as 'Lightning Bolt'?",
+                options: ["Mo Farah", "Tyson Gay", "Usain Bolt", "Carl Lewis"],
+                answer: "Usain Bolt"
+            },
+            {
+                question: "What is the term for 3 goals scored by one player in a soccer game?",
+                options: ["Trick shot", "Triple score", "Hat-trick", "Treble"],
+                answer: "Hat-trick"
+            },
+            {
+                question: "Which sport uses a bat, a ball, and wickets?",
+                options: ["Baseball", "Hockey", "Cricket", "Rugby"],
+                answer: "Cricket"
+            },
+            {
+                question: "In which sport is the Ryder Cup awarded?",
+                options: ["Tennis", "Golf", "Football", "Basketball"],
+                answer: "Golf"
+            },
+            {
+                question: "What is the national sport of Japan?",
+                options: ["Karate", "Judo", "Sumo Wrestling", "Kendo"],
+                answer: "Sumo Wrestling"
+            },
+            {
+                question: "How many players are on a basketball team on the court?",
+                options: ["6", "7", "5", "4"],
+                answer: "5"
+            },
+            {
+                question: "Who has won the most Grand Slam titles in tennis (men)?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                answer: "Novak Djokovic"
+            },
+            {
+                question: "Which ball is used in tennis?",
+                options: ["Red ball", "Green ball", "Yellow ball", "White ball"],
+                answer: "Yellow ball"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let timeLeft = 60;
+        let timer;
+
+        const quizBox = document.getElementById("quiz-box");
+        const nextBtn = document.getElementById("next-btn");
+        const submitBtn = document.getElementById("submit-btn");
+        const retakeBtn = document.getElementById("retake-btn");
+        const resultBox = document.getElementById("result");
+
+        function startQuiz() {
+            showQuestion();
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").innerText = "Time Left: " + timeLeft + "s";
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function showQuestion() {
+            const q = quizData[currentQuestion];
+            quizBox.innerHTML = `
+                <h2>${q.question}</h2>
+                ${q.options
+                    .map((opt, i) => `<button class="option" onclick="selectOption(this)">${opt}</button>`)
+                    .join("")}
+            `;
+        }
+
+        function selectOption(button) {
+            const options = document.querySelectorAll(".option");
+            options.forEach(opt => opt.classList.remove("selected"));
+            button.classList.add("selected");
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector(".option.selected");
+            if (!selected) return alert("Please select an option.");
+            if (selected.innerText === quizData[currentQuestion].answer) score++;
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                showQuestion();
+            } else {
+                submitQuiz();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timer);
+            quizBox.innerHTML = "";
+            nextBtn.style.display = "none";
+            submitBtn.style.display = "none";
+            retakeBtn.style.display = "inline-block";
+            resultBox.innerHTML = `<h2>You scored ${score} out of ${quizData.length}</h2>`;
+        }
+
+        function retakeQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            timeLeft = 60;
+            nextBtn.style.display = "inline-block";
+            submitBtn.style.display = "inline-block";
+            retakeBtn.style.display = "none";
+            resultBox.innerHTML = "";
+            startQuiz();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        window.onload = startQuiz;
+    </script>
+</body>
+</html>
